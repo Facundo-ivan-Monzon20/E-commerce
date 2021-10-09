@@ -1,20 +1,24 @@
 body {
    margin: 0;
    font-family: 'Courier New', Courier, monospace;
-   background-color: #fcfaff;
-   background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d6e1de' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+   background-color: #282c34;
+   background: #282c34;  /* fallback for old browsers */
+   background: -webkit-linear-gradient(to right, #545c6b, #282c34);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #505764, #282c34); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   /*background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d6e1de' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+*/
 }
 
 .header {
     text-align: center;
-    color: #555;
+    color: rgb(255, 255, 255);
 }
 
 .nav-bar{
     display: flex;
     background-color: lightblue;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: 0;    
 }
 
@@ -24,6 +28,11 @@ body {
     height: 20px;
     margin: 0;
     transition: 0.25s;
+}
+
+#login{
+    display: flex;
+    margin-left:auto;
 }
 
 .nav-bar-element:hover {
@@ -43,7 +52,7 @@ body {
 
 .categorias-text {
     font-size: 25px;
-    
+    color: rgb(255, 255, 255);
 
 }
 
