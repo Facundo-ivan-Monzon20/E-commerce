@@ -1,89 +1,79 @@
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import SubjectCards from "./components/SubjectCard";
 
 function App() {
+  const [filtered, setFiltered] = useState(false);
+
+  const subjects = [
+    { name: "Memoria Ram", categorie: "Componentes" },
+    { name: "Silla", categorie: "Muebles" },
+    { name: "Televisor", categorie: "Electrodomestico" },
+    { name: "Disco Solido", categorie: "Componentes" },
+  ];
+
+  const clickFunction = () => {
+    setFiltered(!filtered);
+  };
+
+  const getName = () => {
+    return filtered
+      ? "Dejar de filtrar Componentes PC"
+      : "Filtrar Componentes PC";
+  };
+
+  let finalSubjects = [];
+
+
+  if (filtered) {
+    finalSubjects = subjects.filter((subject) => {
+      return subject.categorie == "Componentes";
+    });
+  } else {
+    finalSubjects = subjects;
+  }
+
+
+
+
+
   return (
-    <div className="App">
-    
-      <div class="nav-bar">
-          <h4 class="nav-bar-element">Inicio</h4>
-          <h4 class="nav-bar-element">Categorías</h4>
-          <h4 class="nav-bar-element">Mis Compras</h4>
-          <h4 class="nav-bar-element">Mi Perfil</h4>
-          <h4  class="nav-bar-element login">Login</h4>
+    <div classNameName="App">
+      <div className="nav-bar">
+        <h4 className="nav-bar-element">Inicio</h4>
+        <h4 className="nav-bar-element">Categorías</h4>
+        <h4 className="nav-bar-element">Mis Compras</h4>
+        <h4 className="nav-bar-element">Mi Perfil</h4>
+        <h4 className="nav-bar-element login">Login</h4>
       </div>
 
-
-      <header class="header">
-          <h1>Bienvenido a E-Commerce</h1>
-          <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In consectetur hic quis.</h3>
+      <header className="header">
+        <h1>Bienvenido a E-Commerce</h1>
+        <h3>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. In
+          consectetur hic quis.
+        </h3>
       </header>
 
-      
-      <div class="categorias">
+      <div className="categorias">
+        <p className="categorias-text">Categorías</p>
 
-        <p class="categorias-text">Categorías</p>
-
-        <div class="categorias-card">
+        <div className="filtros">
+        <button className="filter-btn" onClick={clickFunction}>{getName()}</button>
           
-          <div class="card" >
-              <img src="https://asset.conrad.com/media10/isa/160267/c1/-/en/1761542_BB_00_FB/image.jpg" class="card-img" alt="Memoria RAM"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" ><button class="card-btn">Go somewhere</button></a>
-              </div>
-          </div>
-
-            <div class="card" >
-              <img src="https://m.media-amazon.com/images/I/81nsIeRAJlL._AC_SX450_.jpg" class="card-img" alt="Tarjeta de Video"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" >
-                <button class="card-btn">Go somewhere</button></a>
-              </div>
-            </div>
-
-            <div class="card">
-              <img src="https://s1.eestatic.com/2021/02/24/omicrono/561455415_173822314_1024x576.jpg" class="card-img" alt="Perifericos"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" ><button class="card-btn">Go somewhere</button></a>
-              </div>
-            </div>
-
-            <div class="card">
-              <img src="https://s1.eestatic.com/2021/02/24/omicrono/561455415_173822314_1024x576.jpg" class="card-img" alt="Perifericos"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" ><button class="card-btn">Go somewhere</button></a>
-              </div>
-            </div>
-
-            <div class="card">
-              <img src="https://s1.eestatic.com/2021/02/24/omicrono/561455415_173822314_1024x576.jpg" class="card-img" alt="Perifericos"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" ><button class="card-btn">Go somewhere</button></a>
-              </div>
-            </div>
-
-            <div class="card">
-              <img src="https://s1.eestatic.com/2021/02/24/omicrono/561455415_173822314_1024x576.jpg" class="card-img" alt="Perifericos"/>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" ><button class="card-btn">Go somewhere</button></a>
-              </div>
-            </div>
-
-            
-          </div>
+        </div>
+        <div className="categorias-card">
+          {
+          finalSubjects.map((subjects) => {
+            return (
+              <SubjectCards subject={subjects}/>
+            )
+          })
+          
+          }
+        </div>
       </div>
-  </div>
+    </div>
   );
 }
 
