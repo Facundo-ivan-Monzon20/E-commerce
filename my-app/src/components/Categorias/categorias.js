@@ -30,7 +30,7 @@ const Categorias = () => {
 
     if (filtered) {
         finalSubjects = subjects.filter((subject) => {
-            return subject.categorie === "componentes";
+            return subject.categorie === "Componentes";
         });
     } else {
         finalSubjects = subjects;

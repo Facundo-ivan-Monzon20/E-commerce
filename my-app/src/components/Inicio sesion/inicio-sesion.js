@@ -1,5 +1,7 @@
 import "./iniciar-sesion.css";
-
+import {
+    Link
+  } from "react-router-dom";
 
 const Inicio_sesion = () => {
     return (
@@ -20,8 +22,8 @@ const Inicio_sesion = () => {
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Contraseña" />
                     </div>
-                    <button class="inicio-btn">Iniciar Sesión</button>
-                    <button class="crear-btn">Crear cuenta</button>
+                    <Link to="/Navbar/Categorias"><button class="inicio-btn">Iniciar Sesión</button></Link>
+                   <Link to="registrarse"><button class="crear-btn">Crear cuenta</button></Link>
                     <p>¿Olvidaste tu contraseña? <a href="#">Click aquí</a></p>
                 </div>
             </form>

@@ -16,7 +16,7 @@
  .categorias-text {
     font-size: 25px;
     color: #1a2537;
- 
+   text-align: start;
  }
  
  .filtros {

@@ -1,5 +1,8 @@
 import "./registrarse.css";
 
+import {
+    Link
+  } from "react-router-dom";
 
 const Registrarse = () => {
     return (
@@ -25,7 +28,7 @@ const Registrarse = () => {
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Contraseña" required />
                     </div>
-                    <button class="inicio-btn">Registrarse</button>
+                   <Link to="/Navbar/Categorias" ><button class="inicio-btn">Registrarse</button></Link>
 
                     <p><input type="checkbox" required />Acepto los <a href="#">Términos y Condiciones</a> y autorizo el uso de mis datos de acuerdo a la <a href="#">Declaración de Privacidad.</a></p>
                     <p>¿Ya estás registrado? <a href="#">Click aquí</a></p>

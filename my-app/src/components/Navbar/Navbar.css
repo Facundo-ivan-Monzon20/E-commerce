@@ -4,15 +4,17 @@
     flex-direction: row;
     justify-content: flex-start;
     padding: 0;    
-    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
  }
  
- .nav-bar-element{
+.nav-bar-element{
     padding: 15px;
     align-self: center;
     height: 20px;
     margin: 0;
     transition: 0.25s;
+    
  }
  
  .login{
