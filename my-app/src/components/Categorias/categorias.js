@@ -2,10 +2,11 @@ import "./categorias.css";
 
 import { useState } from "react";
 
-import SubjectCards from "./components/SubjectCard";
+import SubjectCards from "../SubjectCard";
 
 const Categorias = () => {
     const [filtered, setFiltered] = useState(false);
+
 
     const subjects = [
         { name: "Memoria Ram", categorie: "Componentes" },
@@ -26,13 +27,15 @@ const Categorias = () => {
 
     let finalSubjects = [];
 
+
     if (filtered) {
         finalSubjects = subjects.filter((subject) => {
-            return subject.categorie === "Componentes";
+            return subject.categorie === "componentes";
         });
     } else {
         finalSubjects = subjects;
     }
+
 
     return (
         <div>
@@ -50,6 +53,7 @@ const Categorias = () => {
                 <div className="filtros">
                     <button className="filter-btn" onClick={clickFunction}>{getName()}</button>
                 </div>
+
                 <div className="categorias-card">
                     {
                         finalSubjects.map((subjects) => {
@@ -64,3 +68,5 @@ const Categorias = () => {
         </div>
     )
 }
+
+export default Categorias;

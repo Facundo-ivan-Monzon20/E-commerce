@@ -8,37 +8,3 @@ body {
    text-align: center;
    color: #1a2537;
 }
-
-.nav-bar{
-   display: flex;
-   background-color: #1a2537;
-   flex-direction: row;
-   justify-content: flex-start;
-   padding: 0;    
-   color: #fff;
-}
-
-.nav-bar-element{
-   padding: 15px;
-   align-self: center;
-   height: 20px;
-   margin: 0;
-   transition: 0.25s;
-}
-
-.login{
-   margin-left:auto;
-   transition: 0.5s;
-}
-
-.nav-bar-element:hover {
-   background-color: cadetblue;
-   cursor: pointer;
-}
-
-.login:hover {
-   background-color: rgba(0, 139, 139, 0.3);
-   cursor: pointer;
-   width: 100px;
-   text-align: center;
-}
