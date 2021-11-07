@@ -1,12 +1,10 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: cornsilk;
+    background-color: rgb(228, 225, 216);
 }
 
-* {
-    box-sizing: border-box;
-}
+
 
 .container {
     width: 100%;

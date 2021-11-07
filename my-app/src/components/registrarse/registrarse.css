@@ -63,6 +63,10 @@ i {
     transition: 0.5s;
 }
 
+.checkbox {
+    width: auto;
+    margin-right: 5px;
+}
 button:hover {
     background-color: cadetblue;
 }
