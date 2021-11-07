@@ -16,6 +16,8 @@ import Electrodomesticos from "./components/Electrodomesticos/electrodomesticos"
 
 import Componentes from "./components/ComponentesPc/componentesPc";
 
+import Perfil from "./components/Perfil/perfil";
+
 function App() {
   return (
     <Router>
@@ -48,6 +50,12 @@ function App() {
             <Route path="/Navbar/Componentes" exact={true}>
               <Componentes />
             </Route>
+
+
+            <Route path="/Navbar/Perfil" exact={true}>
+              <Perfil />
+            </Route>
+
           </Route>
         </Switch>
       </div>

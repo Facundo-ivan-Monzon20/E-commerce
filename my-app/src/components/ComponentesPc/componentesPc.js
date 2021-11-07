@@ -30,9 +30,12 @@ const Componentes = () => {
           <h4>Productos de la categoría Muebles</h4>
 
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {finalSubjects.map((subjects) => {
+            {
+            finalSubjects.map((subjects) => {
               return <SubjectCards subject={subjects} />;
-            })}
+            }
+            )
+            }
           </div>
         </div>
       </div>

@@ -87,7 +87,7 @@ const Navbar = () => {
             </li>
 
             <li class="nav-item">
-              <Link to="/">
+              <Link to="/Navbar/Perfil">
                 {" "}
                 <a class="nav-link" aria-current="page" href="#">
                   Mi Perfil
@@ -95,10 +95,10 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          {/* <!-- <form class="d-flex">
+          {/* <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-primary" type="submit">Search</button>
-        </form> --> */}
+        </form>  */}
         </div>
       </div>
     </nav>
