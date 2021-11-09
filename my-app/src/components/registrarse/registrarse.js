@@ -1,5 +1,4 @@
-import "./registrarse.css";
-
+import "./registrarse.css"
 import { Link } from "react-router-dom";
 
 const Registrarse = () => {
@@ -11,6 +10,7 @@ const Registrarse = () => {
           <div className="input-contenedor">
             <i className="fas fa-user"></i>
             <input
+            className="input-login"
               type="text"
               name="user"
               placeholder="Nombre Completo"
@@ -21,6 +21,7 @@ const Registrarse = () => {
           <div className="input-contenedor">
             <i className="fas fa-envelope"></i>
             <input
+            className="input-login"
               type="email"
               name="email"
               placeholder="Correo Electrónico"
@@ -31,6 +32,7 @@ const Registrarse = () => {
           <div className="input-contenedor">
             <i className="fas fa-lock"></i>
             <input
+            className="input-login"
               type="password"
               name="password"
               placeholder="Contraseña"

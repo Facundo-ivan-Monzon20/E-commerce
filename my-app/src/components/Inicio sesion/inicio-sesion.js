@@ -1,4 +1,4 @@
-import "./iniciar-sesion.css";
+import "./iniciar-sesion.css"
 import { Link } from "react-router-dom";
 
 const Inicio_sesion = () => {
@@ -9,12 +9,12 @@ const Inicio_sesion = () => {
         <div className="container">
           <div className="input-contenedor">
             <i className="fas fa-envelope"></i>
-            <input type="email" name="Email" placeholder="Correo Electrónico" />
+            <input className="input-login" type="email" name="Email" placeholder="Correo Electrónico" />
           </div>
 
           <div className="input-contenedor">
             <i className="fas fa-lock"></i>
-            <input type="password" name="password" placeholder="Contraseña" />
+            <input className="input-login" type="password" name="password" placeholder="Contraseña" />
           </div>
           <Link to="/Navbar/Inicio">
             <button className="inicio-btn">Iniciar Sesión</button>
