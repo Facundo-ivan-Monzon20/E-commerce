@@ -18,7 +18,7 @@ import Componentes from "./components/ComponentesPc/componentesPc";
 
 import Perfil from "./components/Perfil/perfil";
 
-import Footer from "./components/Footer/footer";
+
 
 function App() {
   return (
