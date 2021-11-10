@@ -9,6 +9,11 @@ const Inicio = () => {
     { name: "Mesa", categorie: "Muebles" },
   ];
 
+
+
+  
+
+
   return (
     <div>
       <div class="album py-5 bg-light">
