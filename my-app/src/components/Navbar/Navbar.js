@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand">
           ICON
         </a>
         <button
@@ -23,7 +23,7 @@ const Navbar = () => {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <Link to="/Navbar/Inicio">
-                <a class="nav-link" aria-current="page" href="#">
+                <a class="nav-link" aria-current="page">
                   Inicio
                 </a>
               </Link>
@@ -32,7 +32,6 @@ const Navbar = () => {
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -44,7 +43,7 @@ const Navbar = () => {
                 <Link to="/NavBar/Electrodomesticos">
                   {" "}
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item">
                       Electrodomesticos
                     </a>
                   </li>
@@ -52,7 +51,7 @@ const Navbar = () => {
                 <Link to="/NavBar/Muebles">
                   {" "}
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" >
                       Muebles
                     </a>
                   </li>
@@ -61,7 +60,7 @@ const Navbar = () => {
                 <Link to="/NavBar/Componentes">
                   {" "}
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item">
                       Componentes para PC
                     </a>
                   </li>
@@ -72,7 +71,7 @@ const Navbar = () => {
             <li class="nav-item">
               <Link to="/">
                 {" "}
-                <a class="nav-link" href="#">
+                <a class="nav-link" >
                   Iniciar sesión
                 </a>
               </Link>
@@ -80,7 +79,7 @@ const Navbar = () => {
 
             <li class="nav-item">
               <Link to="/registrarse">
-                <a class="nav-link" href="#">
+                <a class="nav-link" >
                   Registrarse
                 </a>
               </Link>
@@ -88,7 +87,7 @@ const Navbar = () => {
 
             <li class="nav-item">
               <Link to="/Navbar/Perfil">
-                <a class="nav-link" aria-current="page" href="#">
+                <a class="nav-link" aria-current="page">
                   Mi Perfil
                 </a>
               </Link>

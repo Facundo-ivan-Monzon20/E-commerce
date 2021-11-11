@@ -34,7 +34,7 @@ function App() {
           <Route path="/registrarse" exact={true}>
             <Registrarse />
           </Route>
-
+          
           <Route path="/Navbar">
             <Navbar />
             <Route path="/Navbar/Inicio" exact={true}>
