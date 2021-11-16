@@ -1,4 +1,25 @@
+import {useState} from 'react'
+import { httpPost } from "../../utils/httpFunctions";
+
 const Perfil = () => {
+
+  const [name, setName] = useState([])
+  const [category, setCategory] = useState([])
+  const [description, setDescription] = useState([])
+  const [price, setPrice] = useState([])
+  const [features, setFeatures] = useState([])
+  const [offerPercentage, setOfferPercentage] = useState([])
+
+
+
+    const createProduct = (e) => {
+      e.preventDefault()
+      httpPost('api/product/', {name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage})
+      .then()
+    }
+
+
+
     return (  
         <div class="container">
     
@@ -58,41 +79,46 @@ const Perfil = () => {
          </div>
           
           </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <form class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" onSubmit={createProduct}>
             <div class="row mt-5 mb-4 ">
 
               <div class="col-10 offset-1">
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3"> Nombre:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control border border-secondary" />
+                    <input type="text" class="form-control border border-secondary" value={name}
+                    onChange={(e) => setName(e.target.value)}/>
                   </div>
                 </div>
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3 "> Categoría:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control border border-secondary" />
+                    <input type="text" class="form-control border border-secondary" value={category}
+                    onChange={(e) => setCategory(e.target.value)}/>
                   </div>
                 </div>
 
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3"> Descripción:</label>
                   <div class="col-8">
-                    <textarea type="text" class="form-control border border-secondary"></textarea>
+                    <textarea type="text" class="form-control border border-secondary" value={description}
+                    onChange={(e) => setDescription(e.target.value)}></textarea>
                   </div>
                 </div>
                 
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3"> Precio:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control border border-secondary" />
+                    <input type="text" class="form-control border border-secondary" value={price}
+                    onChange={(e) => setPrice(e.target.value)}/>
                   </div>
                 </div>
 
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3"> Características:</label>
                   <div class="col-8">
-                    <textarea type="text" class="form-control border border-secondary"></textarea>
+                    <textarea type="text" class="form-control border border-secondary" value={features}
+                    onChange={(e) => setFeatures(e.target.value)}></textarea>
                   </div>
                 </div>
                 
@@ -100,20 +126,21 @@ const Perfil = () => {
                 <div class="form-group row mb-4">
                   <label for="codigo" class="col-4 col-md-3"> Descuento:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control border border-secondary" />
+                    <input type="text" class="form-control border border-secondary" value={offerPercentage}
+                    onChange={(e) => setOfferPercentage(e.target.value)}/>
                   </div>
                 </div>
 
 
                 <div class="form-group text-center ">
-                  <button class="btn btn-primary m-2 ">Crear Producto</button>
+                  <button type="submit" class="btn btn-primary m-2 ">Crear Producto</button>
                   <button class="btn btn-danger m-2">Cancelar</button>
                 </div>
               </div>
          </div>
 
 
-          </div>
+          </form>
           <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             
           <div class="row mt-5 mb-4 ">

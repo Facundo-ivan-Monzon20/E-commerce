@@ -1,39 +1,43 @@
-import { useState } from "react";
 import SubjectCards from "../SubjectCard";
+import {useEffect, useState} from 'react'
+import { httpGet } from "../../utils/httpFunctions";
+
+
+
 
 const Inicio = () => {
-
+  const [products, setProducts] = useState([])
   const [categories, setCategorie] = useState('')
 
-  const subjects = [
-    { name: "Memoria Ram", categorie: "Componentes" },
-    { name: "Silla", categorie: "Muebles" },
-    { name: "Televisor", categorie: "Electrodomestico" },
-    { name: "Disco Solido", categorie: "Componentes" },
-    { name: "Mesa", categorie: "Muebles" },
-  ];
+
+  const fetchProducts = () => {
+    httpGet('api/product/')
+    .then((res) => setProducts(res.data))
+  }
+
+  
+  useEffect(fetchProducts, [])
   
   let finalSubjects;
 
   let categorie_dos = categories;
 
   if (categorie_dos != '') {
-    finalSubjects = subjects.filter((subject) => {
+    finalSubjects = products.filter((subject) => {
       return subject.categorie === categorie_dos;
     })
   } else {
-    finalSubjects = subjects;
+    finalSubjects = products;
   }
 
 
   return (
     <div>
+
       <div class="album py-5 bg-light">
         <div class="container">
-          <h4>Alguno de nuestros productos!</h4>
 
-          <div>
-            <div class="nav-item dropdown">
+        <div class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 id="navbarDropdown"
@@ -80,13 +84,14 @@ const Inicio = () => {
 
               </ul>
             </div>
-
-          </div>
+        
+          <h4>Alguno de nuestros productos!</h4>
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {
-
-              finalSubjects.map((subjects) => {
+             
+              finalSubjects
+              .map((subjects) => {
                 return <SubjectCards subject={subjects} />;
               })
             }
