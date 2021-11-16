@@ -9,6 +9,7 @@ djangorestframework = "*"
 drf-yasg = "*"
 serializers = "*"
 djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
