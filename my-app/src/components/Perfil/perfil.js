@@ -1,8 +1,10 @@
-import {useState} from 'react'
-import { httpPost } from "../../utils/httpFunctions";
+import {useEffect, useState} from 'react'
+import { httpGet, httpPost } from "../../utils/httpFunctions";
+import { useHistory } from "react-router-dom";
+
 
 const Perfil = () => {
-
+  const [userData, setUserData] = useState({})
   const [name, setName] = useState([])
   const [category, setCategory] = useState([])
   const [description, setDescription] = useState([])
@@ -11,11 +13,19 @@ const Perfil = () => {
   const [offerPercentage, setOfferPercentage] = useState([])
 
 
+  useEffect(() => {
+    httpGet('api/me').then((res) => setUserData(res.data))
+  }, [])
+
+
+  const history = useHistory();
 
     const createProduct = (e) => {
       e.preventDefault()
       httpPost('api/product/', {name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage})
-      .then()
+      .then(
+        history.push('/Navbar/Inicio')
+      )
     }
 
 
@@ -46,26 +56,25 @@ const Perfil = () => {
               <div class="col-12 col-md-5 ">
                 <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" class="img-thumbnail" alt="..." />           
               </div>
-
               <div class="col-12 col-md-7 mt-4 mt-mb-0" >
                 <div class="form-group row mb-4 ">
-                  <label for="code" class="col-3 "> Codigo:</label>
+                  <label for="code" class="col-3 "> Usuario:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control bg-white border-0" value="00858DE" disabled/>
+                    <input type="text" class="form-control bg-white border-0" value={userData.username} disabled/>
                   </div>
                 </div>
                 
                 <div class="form-group row mb-4">
-                  <label for="user" class="col-3"> Usuario:</label>
+                  <label for="user" class="col-3"> Nombre completo:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control bg-white border-0" value="Jano Melul" disabled />
+                    <input type="text" class="form-control bg-white border-0" value={userData.first_name + " " + userData.last_name} disabled />
                   </div>
                 </div>
                
                 <div class="form-group row mb-4">
                   <label for="email" class="col-3"> Email:</label>
                   <div class="col-8">
-                    <input type="text" class="form-control bg-white border-0" value="jannomelul@gmail.com" disabled />
+                    <input type="text" class="form-control bg-white border-0" value={userData.email} disabled />
                   </div>
                 </div>
                 

@@ -18,7 +18,7 @@ import Componentes from "./components/ComponentesPc/componentesPc";
 
 import Perfil from "./components/Perfil/perfil";
 
-
+import AuthRoute from "./components/authRoute";
 
 function App() {
   return (
@@ -31,6 +31,10 @@ function App() {
           <Route path="/" exact={true}>
             <Inicio_sesion />
           </Route>
+          <AuthRoute exact={true} path={`/perfil`}>
+              <Perfil />
+            </AuthRoute>
+          
           <Route path="/registrarse" exact={true}>
             <Registrarse />
           </Route>
@@ -53,10 +57,11 @@ function App() {
               <Componentes />
             </Route>
 
-
-            <Route path="/Navbar/Perfil" exact={true}>
+            <AuthRoute path="/Navbar/Perfil" exact={true}>
               <Perfil />
-            </Route>
+            </AuthRoute>
+
+            
 
           </Route>
         </Switch>

@@ -1,13 +1,19 @@
-import axios from 'axios'
+import axios from "axios";
 
-const baseUrl = 'http://127.0.0.1:8000/'
+const baseUrl = "http://localhost:8000/";
 
-export const httpGet = async (endPoint) => {
-      return axios.get(baseUrl + endPoint)
-}
+export const httpGet = async (endpoint) => {
+  return axios.get(baseUrl + endpoint, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+};
 
-export const httpPost = async (endPoint, data) => {
-   return axios.post(baseUrl + endPoint, data)
-}
-
-
+export const httpPost = async (endpoint, data) => {
+  return axios.post(baseUrl + endpoint, data, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+};

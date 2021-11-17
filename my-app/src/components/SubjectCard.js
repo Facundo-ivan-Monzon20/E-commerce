@@ -21,13 +21,12 @@ function SubjectCards({ subject }) {
         <div className="card-body">
           <h5 className="card-text">{subject.name}</h5>
           <p className="card-text">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
+            {subject.description}
           </p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
               <a href="#" className="btn btn-primary p-3">
-                Go somewhere
+                Ver Detalles
               </a>
             </div>
             {/* <!-- <small class="text-muted">9 mins</small> --> */}
