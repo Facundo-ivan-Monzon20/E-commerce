@@ -1,33 +1,39 @@
-import { useState } from "react";
-
 import SubjectCards from "../SubjectCard";
+import {useEffect, useState} from 'react'
+import { httpGet } from "../../utils/httpFunctions";
+
+
+
 
 const Componentes = () => {
-  const [filtered] = useState(true);
+  const [products, setProducts] = useState([])
+  const [categories] = useState(true)
 
-  const subjects = [
-    { name: "Memoria Ram", categorie: "Componentes" },
-    { name: "Silla", categorie: "Muebles" },
-    { name: "Televisor", categorie: "Electrodomestico" },
-    { name: "Disco Solido", categorie: "Componentes" },
-    { name: "Mesa", categorie: "Muebles" },
-  ];
 
-  let finalSubjects = [];
-
-  if (filtered) {
-    finalSubjects = subjects.filter((subject) => {
-      return subject.categorie === "Componentes";
-    });
-  } else {
-    finalSubjects = subjects;
+  const fetchProducts = () => {
+    httpGet('api/product/')
+    .then((res) => setProducts(res.data))
   }
+
+  
+  useEffect(fetchProducts, [])
+  
+  let finalSubjects;
+
+  if (categories) {
+    finalSubjects = products.filter((subject) => {
+      return subject.category === "componente para pc";
+    })
+  } else {
+    finalSubjects = [];
+  }
+
 
   return (
     <div>
       <div className="album py-5 bg-light">
         <div className="container">
-          <h4>Productos de la categoría Muebles</h4>
+          <h4>Productos de la categoría Componentes para PC</h4>
 
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {

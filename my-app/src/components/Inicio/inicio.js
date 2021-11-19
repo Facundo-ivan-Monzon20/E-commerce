@@ -7,7 +7,7 @@ import { httpGet } from "../../utils/httpFunctions";
 
 const Inicio = () => {
   const [products, setProducts] = useState([])
-  const [categories, setCategorie] = useState('')
+  const [categories, setCategory] = useState('')
 
 
   const fetchProducts = () => {
@@ -20,11 +20,11 @@ const Inicio = () => {
   
   let finalSubjects;
 
-  let categorie_dos = categories;
+  let category_filter = categories;
 
-  if (categorie_dos != '') {
+  if (category_filter != '') {
     finalSubjects = products.filter((subject) => {
-      return subject.categorie === categorie_dos;
+      return subject.category == category_filter;
     })
   } else {
     finalSubjects = products;
@@ -51,7 +51,7 @@ const Inicio = () => {
                 {" "}
                 <li>
                   <button class="dropdown-item"
-                    onClick={() => setCategorie('')}
+                    onClick={() => setCategory('')}
                   >
                     Todos los productos
                   </button>
@@ -59,24 +59,24 @@ const Inicio = () => {
                 {" "}
                 <li>
                   <button class="dropdown-item"
-                    onClick={() => setCategorie('Electrodomestico')}
+                    onClick={() => setCategory('electrodomestico')}
                   >
-                    Electrodomésticos
+                    Electrodoméstico
                   </button>
                 </li>
 
                 {" "}
                 <li>
                   <button class="dropdown-item"
-                    onClick={() => setCategorie('Muebles')}
+                    onClick={() => setCategory('mueble')}
                   >
-                    Muebles
+                    Mueble
                   </button>
                 </li>
                 {" "}
                 <li>
                   <button class="dropdown-item"
-                    onClick={() => setCategorie('Componentes')}
+                    onClick={() => setCategory('componente para pc')}
                   >
                     Componentes para PC
                   </button>
@@ -85,7 +85,7 @@ const Inicio = () => {
               </ul>
             </div>
         
-          <h4>Alguno de nuestros productos!</h4>
+          <h4>Alguno de nuestros productos</h4>
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {

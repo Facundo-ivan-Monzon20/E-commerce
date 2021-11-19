@@ -23,6 +23,9 @@ function SubjectCards({ subject }) {
           <p className="card-text">
             {subject.description}
           </p>
+          <p className="card-text">
+            {subject.price}
+          </p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
               <a href="#" className="btn btn-primary p-3">

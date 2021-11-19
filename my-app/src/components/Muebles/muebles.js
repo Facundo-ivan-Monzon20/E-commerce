@@ -1,26 +1,28 @@
-import { useState } from "react";
-
 import SubjectCards from "../SubjectCard";
+import {useEffect, useState} from 'react'
+import { httpGet } from "../../utils/httpFunctions";
 
 const Muebles = () => {
-  const [filtered] = useState(true);
+  const [products, setProducts] = useState([])
+  const [categories] = useState(true)
 
-  const subjects = [
-    { name: "Memoria Ram", categorie: "Componentes" },
-    { name: "Silla", categorie: "Muebles" },
-    { name: "Televisor", categorie: "Electrodomestico" },
-    { name: "Disco Solido", categorie: "Componentes" },
-    { name: "Mesa", categorie: "Muebles" },
-  ];
 
-  let finalSubjects = [];
+  const fetchProducts = () => {
+    httpGet('api/product/')
+    .then((res) => setProducts(res.data))
+  }
 
-  if (filtered) {
-    finalSubjects = subjects.filter((subject) => {
-      return subject.categorie === "Muebles";
-    });
+  
+  useEffect(fetchProducts, [])
+  
+  let finalSubjects;
+
+  if (categories) {
+    finalSubjects = products.filter((subject) => {
+      return subject.category === "mueble";
+    })
   } else {
-    finalSubjects = subjects;
+    finalSubjects = [];
   }
 
   return (
