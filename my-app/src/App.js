@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Inicio from "./components/Inicio/inicio";
@@ -29,21 +30,21 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
 
-        <Route path="/" exact={true}>
+          <Route path="/" exact={true}>
             <Navbar />
             <Inicio />
-            </Route>
+          </Route>
           <Route path="/inicio-sesion" exact={true}>
             <Inicio_sesion />
           </Route>
           <AuthRoute exact={true} path={`/perfil`}>
-              <Perfil />
-            </AuthRoute>
-          
+            <Perfil />
+          </AuthRoute>
+
           <Route path="/registrarse" exact={true}>
             <Registrarse />
           </Route>
-          
+
           <Route path="/">
             <Navbar />
 
@@ -63,7 +64,7 @@ function App() {
               <Perfil />
             </AuthRoute>
 
-            
+
 
           </Route>
         </Switch>
