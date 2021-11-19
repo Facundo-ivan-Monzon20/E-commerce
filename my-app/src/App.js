@@ -28,7 +28,12 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/" exact={true}>
+
+        <Route path="/" exact={true}>
+            <Navbar />
+            <Inicio />
+            </Route>
+          <Route path="/inicio-sesion" exact={true}>
             <Inicio_sesion />
           </Route>
           <AuthRoute exact={true} path={`/perfil`}>
@@ -39,11 +44,8 @@ function App() {
             <Registrarse />
           </Route>
           
-          <Route path="/Navbar">
+          <Route path="/">
             <Navbar />
-            <Route path="/Navbar/Inicio" exact={true}>
-              <Inicio />
-            </Route>
 
             <Route path="/Navbar/Electrodomesticos" exact={true}>
               <Electrodomesticos />

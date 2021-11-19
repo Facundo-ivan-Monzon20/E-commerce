@@ -15,7 +15,7 @@ const AuthRoute = ({exact, children, path}) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/inicio-sesion",
               state: { from: location }
             }}
           />

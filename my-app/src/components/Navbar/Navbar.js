@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
+    <div>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand">
@@ -22,7 +23,7 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Link to="/Navbar/Inicio">
+              <Link to="/">
                 <a class="nav-link" aria-current="page">
                   Inicio
                 </a>
@@ -69,7 +70,7 @@ const Navbar = () => {
             </li>
 
             <li class="nav-item">
-              <Link to="/">
+              <Link to="/inicio-sesion">
                 {" "}
                 <a class="nav-link" >
                   Iniciar sesión
@@ -100,6 +101,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </div>
   );
 };
 
