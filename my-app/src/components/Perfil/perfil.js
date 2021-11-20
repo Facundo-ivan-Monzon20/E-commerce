@@ -22,7 +22,7 @@ const Perfil = () => {
 
     const createProduct = (e) => {
       e.preventDefault()
-      httpPost('api/product/', {name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage})
+      httpPostAuthorization('api/product/', {name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage})
       .then(
         history.push('/Navbar/Inicio')
       )

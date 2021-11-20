@@ -23,7 +23,7 @@ const Registrarse = () => {
       email: email,
       password: password,
     }).then(
-      history.push('/')
+      history.push('/inicio-sesion')
     );
   };
 

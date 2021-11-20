@@ -3,7 +3,11 @@ import axios from "axios";
 const baseUrl = "http://localhost:8000/";
 
 export const httpGet = async (endpoint) => {
-  return axios.get(baseUrl + endpoint, {
+  return axios.get(baseUrl + endpoint);
+};
+
+export const httpPostAuthorization = async (endpoint, data) => {
+  return axios.post(baseUrl + endpoint, data, {
     headers: {
       authorization: "Bearer " + localStorage.getItem("token"),
     },
@@ -11,9 +15,5 @@ export const httpGet = async (endpoint) => {
 };
 
 export const httpPost = async (endpoint, data) => {
-  return axios.post(baseUrl + endpoint, data, {
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  });
+  return axios.post(baseUrl + endpoint, data);
 };
