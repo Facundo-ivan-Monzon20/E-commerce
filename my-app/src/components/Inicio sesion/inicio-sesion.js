@@ -1,13 +1,11 @@
 import "./iniciar-sesion.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { httpPost } from "../../utils/httpFunctions";
-import { useHistory } from "react-router-dom";
+import { httpPost } from "../../utils/httpFunctions"
 const Inicio_sesion = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  const history = useHistory();
 
   const login = (e) => {
     e.preventDefault();
@@ -16,7 +14,7 @@ const Inicio_sesion = () => {
       password: password,
     }).then((res) => {
       localStorage.setItem("token", res.data.access);
-      history.push('/Navbar/Inicio')
+      history.push('/')
     });
   };
 

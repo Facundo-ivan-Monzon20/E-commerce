@@ -24,7 +24,7 @@ const Perfil = () => {
       e.preventDefault()
       httpPostAuthorization('api/product/', {name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage})
       .then(
-        history.push('/Navbar/Inicio')
+        history.push('/')
       )
     }
 
