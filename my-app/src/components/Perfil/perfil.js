@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { httpGet, httpPost } from "../../utils/httpFunctions";
+import { httpGet, httpPostAuthorization } from "../../utils/httpFunctions";
 import { useHistory } from "react-router-dom";
 
 
