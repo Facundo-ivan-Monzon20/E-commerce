@@ -1,7 +1,7 @@
-import {Route, Redirect} from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 
-const AuthRoute = ({exact, children, path}) => {
+const AuthRoute = ({ exact, children, path }) => {
 
   const isLoggedIn = localStorage.getItem('token')
 

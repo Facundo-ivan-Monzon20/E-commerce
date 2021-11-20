@@ -2,10 +2,15 @@ import "./iniciar-sesion.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { httpPost } from "../../utils/httpFunctions"
+
+import { useHistory } from "react-router";
+
+
 const Inicio_sesion = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
+  const history = useHistory();
 
   const login = (e) => {
     e.preventDefault();
@@ -44,9 +49,9 @@ const Inicio_sesion = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-      
-            <button type="submit" className="inicio-btn">Iniciar Sesión</button>
-         
+
+          <button type="submit" className="inicio-btn">Iniciar Sesión</button>
+
           <Link to="registrarse">
             <button className="crear-btn">Crear cuenta</button>
           </Link>
