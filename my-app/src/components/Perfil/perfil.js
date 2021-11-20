@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { httpGet, httpPostAuthorization } from "../../utils/httpFunctions";
+import { httpGetAuthorization, httpPostAuthorization } from "../../utils/httpFunctions";
 import { useHistory } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ const Perfil = () => {
 
 
   useEffect(() => {
-    httpGet('api/me').then((res) => setUserData(res.data))
+    httpGetAuthorization('api/me').then((res) => setUserData(res.data))
   }, [])
 
 
