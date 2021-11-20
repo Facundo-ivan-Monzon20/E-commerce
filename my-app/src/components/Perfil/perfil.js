@@ -45,10 +45,10 @@ const Perfil = () => {
               <button class="nav-link p-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">Crear Producto</button>
             </li>
-            <li class="nav-item" role="presentation">
+            {/* <li class="nav-item" role="presentation">
               <button class="nav-link p-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
                 role="tab" aria-controls="contact" aria-selected="false">Editar Usuario</button>
-            </li>
+            </li> */}
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -78,12 +78,12 @@ const Perfil = () => {
                     </div>
                   </div>
 
-                  <div class="form-group row mb-4">
+                  {/* <div class="form-group row mb-4">
                     <label for="cantProduct" class="col-3"> Productos en venta:</label>
                     <div class="col-8">
                       <input type="text" class="form-control bg-white border-0" value="0" disabled />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

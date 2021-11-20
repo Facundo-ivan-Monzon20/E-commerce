@@ -61,7 +61,7 @@ const Inicio = () => {
                   <button class="dropdown-item"
                     onClick={() => setCategory('electrodomestico')}
                   >
-                    Electrodoméstico
+                    Electrodomésticos
                   </button>
                 </li>
 
@@ -70,7 +70,7 @@ const Inicio = () => {
                   <button class="dropdown-item"
                     onClick={() => setCategory('mueble')}
                   >
-                    Mueble
+                    Muebles
                   </button>
                 </li>
                 {" "}
