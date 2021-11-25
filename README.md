@@ -6,4 +6,6 @@ correr el servidor,
 
 my-app es el proyecto del frontend, 
 usar npm install para actualizar, 
-npm start, 
+npm start
+
+La navegación es bastante intuitiva aunque hay algunas acciones todavía no habilitadas, que van a ser habilitadas para el proyecto final. Por ej: Ver detalles o Search.
