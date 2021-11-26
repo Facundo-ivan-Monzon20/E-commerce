@@ -14,12 +14,21 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
+    # Filtro
+    def get_queryset(self):
+        queryset = self.queryset
+        id = self.request.query_params.get('id')
+        if id is not None:
+            queryset = queryset.filter(id=id)
+        return queryset
+
     def get_permissions(self):
         if self.action == 'create':
             self.permission_classes = [IsAuthenticated]
         else:
             self.permission_classes = []
         return super(ProductViewSet, self).get_permissions()
+
 
 
 class RegisterView(generics.CreateAPIView):

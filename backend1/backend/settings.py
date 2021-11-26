@@ -134,7 +134,7 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
+    'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
@@ -143,10 +143,11 @@ SWAGGER_SETTINGS = {
     }
 }
 
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+

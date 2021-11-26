@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import './Navbar.css';
 
 const Navbar = () => {
   return (
     <div>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+   <nav class="navbar sticky-top navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand">
           ICON
@@ -17,7 +18,7 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-bars"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,9 +41,8 @@ const Navbar = () => {
               >
                 Categorías
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
                 <Link to="/NavBar/Electrodomesticos">
-                  {" "}
                   <li>
                     <a class="dropdown-item">
                       Electrodomesticos
@@ -50,7 +50,7 @@ const Navbar = () => {
                   </li>
                 </Link>
                 <Link to="/NavBar/Muebles">
-                  {" "}
+                 
                   <li>
                     <a class="dropdown-item" >
                       Muebles
@@ -59,7 +59,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link to="/NavBar/Componentes">
-                  {" "}
+                  
                   <li>
                     <a class="dropdown-item">
                       Componentes para PC
@@ -71,7 +71,7 @@ const Navbar = () => {
 
             <li class="nav-item">
               <Link to="/inicio-sesion">
-                {" "}
+            
                 <a class="nav-link" >
                   Iniciar sesión
                 </a>

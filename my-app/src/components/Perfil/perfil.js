@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { httpGetAuthorization, httpPostAuthorization } from "../../utils/httpFunctions";
+import { httpDelete, httpGetAuthorization, httpPostAuthorization, httpPutAuthorization} from "../../utils/httpFunctions";
 import { useHistory } from "react-router-dom";
 
 
 const Perfil = () => {
+  const [productData, setProductData] = useState({})
   const [userData, setUserData] = useState({})
   const [name, setName] = useState([])
   const [category, setCategory] = useState([])
@@ -11,11 +12,16 @@ const Perfil = () => {
   const [price, setPrice] = useState([])
   const [features, setFeatures] = useState([])
   const [offerPercentage, setOfferPercentage] = useState([])
-
+  const [id, setId] = useState(null)
 
   useEffect(() => {
     httpGetAuthorization('api/me').then((res) => setUserData(res.data))
   }, [])
+
+  useEffect(() => {
+    httpGetAuthorization('api/product').then((res) => setProductData(res.data))
+  }, [])
+
 
 
   const history = useHistory();
@@ -25,6 +31,24 @@ const Perfil = () => {
     httpPostAuthorization('api/product/', { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage })
       .then(
         history.push('/')
+      )
+  }
+
+
+
+  const deleteProduct = (e) => {
+    e.preventDefault()
+    httpDelete(`api/product/${id}/`)
+      .then(
+        history.push('/Navbar/Perfil')
+      )
+  }
+
+  const editProduct = (e) => {
+    e.preventDefault()
+    httpPutAuthorization(`api/product/${id}/`, { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage })
+      .then(
+        history.push('/Navbar/Perfil')
       )
   }
 
@@ -45,11 +69,18 @@ const Perfil = () => {
               <button class="nav-link p-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">Crear Producto</button>
             </li>
-            {/* <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation">
               <button class="nav-link p-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                role="tab" aria-controls="contact" aria-selected="false">Editar Usuario</button>
-            </li> */}
+                role="tab" aria-controls="contact" aria-selected="false">Eliminar Producto</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button class="nav-link p-3" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button"
+                role="tab" aria-controls="edit" aria-selected="false">Editar Producto</button>
+            </li>
           </ul>
+
+
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div class="row mt-5 mb-4 ">
@@ -78,12 +109,14 @@ const Perfil = () => {
                     </div>
                   </div>
 
-                  {/* <div class="form-group row mb-4">
+                  <div class="form-group row mb-4">
                     <label for="cantProduct" class="col-3"> Productos en venta:</label>
                     <div class="col-8">
                       <input type="text" class="form-control bg-white border-0" value="0" disabled />
                     </div>
-                  </div> */}
+                  </div>
+
+                  <button class="btn btn-danger m-2">Cancelar</button>
                 </div>
               </div>
 
@@ -136,7 +169,7 @@ const Perfil = () => {
                     <label for="codigo" class="col-4 col-md-3"> Descuento:</label>
                     <div class="col-8">
                       <input type="text" class="form-control border border-secondary" value={offerPercentage}
-                        onChange={(e) => setOfferPercentage(e.target.value)} />
+                       onChange={(e) => setOfferPercentage(e.target.value)} />
                     </div>
                   </div>
 
@@ -157,38 +190,106 @@ const Perfil = () => {
                   <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" class="img-thumbnail" alt="..." />
                 </div>
 
-                <div class="col-12 col-md-7 mt-4 mt-mb-0" >
+                <form class="col-12 col-md-7 mt-4 mt-mb-0 " onSubmit={deleteProduct}>
+               
+                <div class="form-group row mb-4">
+                      <label for="codigo" class="col-3"> Codigo: </label>
+                      <div class="col-8">
+                        <input className="form-control border border-secondary"
+                          value={id}
+                          onChange={(e) => setId(e.target.value)}
+                        />
+                      </div>
+                      </div>
+                  <div class="form-group text-center ">
+                    
+                    <button class="btn btn-danger m-2" type="submit" >Eliminar</button>
+                  </div>
+                </form>
+
+              </div>
+
+
+            </div>
+
+
+
+            <form class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="edit-tab" onSubmit={editProduct}>
+              <div class="row mt-5 mb-4 ">
+
+                <div class="col-10 offset-1">
+                <div class="form-group row mb-4">
+                      <label for="codigo" class="col-3"> Codigo: </label>
+                      <div class="col-8">
+                        <input className="form-control border border-secondary"
+                          value={id}
+                          onChange={(e) => setId(e.target.value)}
+                        />
+                      </div>
+                      </div>
                   <div class="form-group row mb-4">
-                    <label for="codigo" class="col-3"> Codigo:</label>
+                    <label for="codigo" class="col-4 col-md-3"> Nombre:</label>
                     <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value="00858DE" />
+                      <input type="text" class="form-control border border-secondary" value={name}
+                        onChange={(e) => setName(e.target.value)} />
+                    </div>
+                  </div>
+                  <div class="form-group row mb-4">
+                    <label for="codigo" class="col-4 col-md-3 "> Categoría:</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control border border-secondary" value={category}
+                        onChange={(e) => setCategory(e.target.value)} />
                     </div>
                   </div>
 
                   <div class="form-group row mb-4">
-                    <label for="codigo" class="col-3"> Usuario:</label>
+                    <label for="codigo" class="col-4 col-md-3"> Descripción:</label>
                     <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value="Jano Melul" />
+                      <textarea type="text" class="form-control border border-secondary" value={description}
+                        onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
                   </div>
 
                   <div class="form-group row mb-4">
-                    <label for="codigo" class="col-3"> Email:</label>
+                    <label for="codigo" class="col-4 col-md-3"> Precio:</label>
                     <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value="jannomelul@gmail.com" />
+                      <input type="text" class="form-control border border-secondary" value={price}
+                        onChange={(e) => setPrice(e.target.value)} />
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-4">
+                    <label for="codigo" class="col-4 col-md-3"> Características:</label>
+                    <div class="col-8">
+                      <textarea type="text" class="form-control border border-secondary" value={features}
+                        onChange={(e) => setFeatures(e.target.value)}></textarea>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row mb-4">
+                    <label for="codigo" class="col-4 col-md-3"> Descuento:</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control border border-secondary" value={offerPercentage}
+                       onChange={(e) => setOfferPercentage(e.target.value)} />
                     </div>
                   </div>
 
 
                   <div class="form-group text-center ">
-                    <button class="btn btn-primary m-2">Actualizar</button>
-                    <button class="btn btn-danger m-2">Cancelar</button>
+                    <button type="submit" class="btn btn-primary m-2">Editar Producto</button>
                   </div>
                 </div>
               </div>
 
 
-            </div>
+            </form>
+
+
+
+
+
+
           </div>
         </div>
       </div>
