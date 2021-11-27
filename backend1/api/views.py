@@ -15,12 +15,12 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
     # Filtro
-    def get_queryset(self):
-        queryset = self.queryset
-        id = self.request.query_params.get('id')
-        if id is not None:
-            queryset = queryset.filter(id=id)
-        return queryset
+   # def get_queryset(self):
+   #     queryset = self.queryset
+    #    id = self.request.query_params.get('id')
+     #   if id is not None:
+      #      queryset = queryset.filter(id=id)
+       # return queryset
 
     def get_permissions(self):
         if self.action == 'create':
