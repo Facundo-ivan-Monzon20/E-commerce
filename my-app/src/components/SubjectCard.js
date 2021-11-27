@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SubjectCards({ subject }) {
   return (
     //   <!--///////////////////////////////// -->
@@ -21,16 +23,17 @@ function SubjectCards({ subject }) {
         <div className="card-body">
           <h5 className="card-text">{subject.name}</h5>
           <p className="card-text">
-            {subject.description}
+            Descripción: {subject.description}
           </p>
           <p className="card-text">
-            {subject.price}
+            Precio: {subject.price}
           </p>
+          <p>Codigo: {subject.id}</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
-              <a href="#" className="btn btn-primary p-3">
+              <Link to={`/Navbar/${subject.name}/${subject.id}`}><button className="btn btn-primary p-3">
                 Ver Detalles
-              </a>
+              </button></Link>
             </div>
             {/* <!-- <small class="text-muted">9 mins</small> --> */}
           </div>

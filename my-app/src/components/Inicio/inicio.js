@@ -1,5 +1,5 @@
 import SubjectCards from "../SubjectCard";
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { httpGet } from "../../utils/httpFunctions";
 
 
@@ -12,12 +12,12 @@ const Inicio = () => {
 
   const fetchProducts = () => {
     httpGet('api/product/')
-    .then((res) => setProducts(res.data))
+      .then((res) => setProducts(res.data))
   }
 
-  
+
   useEffect(fetchProducts, [])
-  
+
   let finalSubjects;
 
   let category_filter = categories;
@@ -34,66 +34,66 @@ const Inicio = () => {
   return (
     <div>
 
-      <div class="album py-5 bg-light">
-        <div class="container">
+      <div className="album py-5 bg-light">
+        <div className="container">
 
-        <div class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Filtrar
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {" "}
-                <li>
-                  <button class="dropdown-item"
-                    onClick={() => setCategory('')}
-                  >
-                    Todos los productos
-                  </button>
-                </li>
-                {" "}
-                <li>
-                  <button class="dropdown-item"
-                    onClick={() => setCategory('electrodomestico')}
-                  >
-                    Electrodomésticos
-                  </button>
-                </li>
+          <div className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Filtrar
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              {" "}
+              <li>
+                <button className="dropdown-item"
+                  onClick={() => setCategory('')}
+                >
+                  Todos los productos
+                </button>
+              </li>
+              {" "}
+              <li>
+                <button className="dropdown-item"
+                  onClick={() => setCategory('electrodomestico')}
+                >
+                  Electrodomésticos
+                </button>
+              </li>
 
-                {" "}
-                <li>
-                  <button class="dropdown-item"
-                    onClick={() => setCategory('mueble')}
-                  >
-                    Muebles
-                  </button>
-                </li>
-                {" "}
-                <li>
-                  <button class="dropdown-item"
-                    onClick={() => setCategory('componente para pc')}
-                  >
-                    Componentes para PC
-                  </button>
-                </li>
+              {" "}
+              <li>
+                <button className="dropdown-item"
+                  onClick={() => setCategory('mueble')}
+                >
+                  Muebles
+                </button>
+              </li>
+              {" "}
+              <li>
+                <button className="dropdown-item"
+                  onClick={() => setCategory('componente para pc')}
+                >
+                  Componentes para PC
+                </button>
+              </li>
 
-              </ul>
-            </div>
-        
+            </ul>
+          </div>
+
           <h4>Alguno de nuestros productos</h4>
 
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {
-             
+
               finalSubjects
-              .map((subjects) => {
-                return <SubjectCards subject={subjects} />;
-              })
+                .map((subjects) => {
+                  return <SubjectCards subject={subjects} />;
+                })
             }
           </div>
         </div>

@@ -21,6 +21,7 @@ import Perfil from "./components/Perfil/perfil";
 
 import AuthRoute from "./components/authRoute";
 
+import DetailProduct from "./components/detailProduct/detailProduct";
 function App() {
   return (
     <Router>
@@ -37,15 +38,12 @@ function App() {
           <Route path="/inicio-sesion" exact={true}>
             <Inicio_sesion />
           </Route>
-          <AuthRoute exact={true} path={`/perfil`}>
-            <Perfil />
-          </AuthRoute>
 
           <Route path="/registrarse" exact={true}>
             <Registrarse />
           </Route>
 
-          <Route path="/">
+          <Route path="/Navbar">
             <Navbar />
 
             <Route path="/Navbar/Electrodomesticos" exact={true}>
@@ -63,10 +61,13 @@ function App() {
             <AuthRoute path="/Navbar/Perfil" exact={true}>
               <Perfil />
             </AuthRoute>
+            <Route path={`/Navbar/:name/:id`}>
+              <DetailProduct />
 
-
+            </Route>
 
           </Route>
+
         </Switch>
       </div>
     </Router>

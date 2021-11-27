@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from rest_framework import viewsets, generics
 from rest_framework.decorators import api_view, permission_classes
@@ -28,7 +26,6 @@ class ProductViewSet(viewsets.ModelViewSet):
         else:
             self.permission_classes = []
         return super(ProductViewSet, self).get_permissions()
-
 
 
 class RegisterView(generics.CreateAPIView):
