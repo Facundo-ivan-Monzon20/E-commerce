@@ -7,7 +7,6 @@ from api.views import ProductViewSet, RegisterView, me, shoppingCartViewSet
 router = routers.DefaultRouter()
 router.register(r'product', ProductViewSet)
 router.register(r'shoppingCartViewSet', shoppingCartViewSet)
-
 urlpatterns = [
     path('', include(router.urls)),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

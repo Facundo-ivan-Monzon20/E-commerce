@@ -44,3 +44,12 @@ class shoppingCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = shoppingCart
         fields = "__all__"
+
+
+class CarritogetSerializer(serializers.ModelSerializer):
+    Product = ProductSerializer(read_only=True)
+    usuario = MeSerializer(read_only=True)
+
+    class Meta:
+        model = shoppingCart
+        fields = "__all__"

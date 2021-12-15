@@ -22,6 +22,7 @@ import Perfil from "./components/Perfil/perfil";
 import AuthRoute from "./components/authRoute";
 
 import DetailProduct from "./components/detailProduct/detailProduct";
+import Carrito from "./components/Carrito";
 function App() {
   return (
     <Router>
@@ -35,6 +36,7 @@ function App() {
             <Navbar />
             <Inicio />
           </Route>
+
           <Route path="/inicio-sesion" exact={true}>
             <Inicio_sesion />
           </Route>
@@ -61,10 +63,14 @@ function App() {
             <AuthRoute path="/Navbar/Perfil" exact={true}>
               <Perfil />
             </AuthRoute>
-            <Route path={`/Navbar/:name/:id`}>
-              <DetailProduct />
 
+            <Route path={`/Navbar/:name/:id`} exact={true} >
+              <DetailProduct />
             </Route>
+
+            <AuthRoute path={`/Navbar/carrito/:nameuser/:userid`} exact={true}>
+              <Carrito />
+            </AuthRoute>
 
           </Route>
 
