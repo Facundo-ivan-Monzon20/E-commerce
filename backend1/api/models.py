@@ -5,7 +5,6 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
-    objects = None
     name = models.TextField(max_length=30)
     category = models.TextField()
     description = models.TextField(max_length=100)
@@ -23,9 +22,6 @@ class CartItem(models.Model):
     updated_at = models.DateTimeField(editable=False, auto_now=True, null=True)
     Product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='shoppingCart')
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='shoppingCart')
-<<<<<<< HEAD
-=======
-    cantidadProducts = models.DecimalField(null=True, decimal_places=10, max_digits=12)
 
 
 class Comment(models.Model):
@@ -34,5 +30,3 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(editable=False, auto_now=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comment')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comment')
-
->>>>>>> 87c97b94e312b034f07b40a4a604cca5b143a391
