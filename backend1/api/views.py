@@ -8,9 +8,15 @@ from django.contrib.auth import logout
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
+<<<<<<< HEAD
 from api.models import Product, CartItem
 from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, CartItemSerializer, \
     CartItemgetSerializer
+=======
+from api.models import Product, shoppingCart, Comment
+from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, shoppingCartSerializer, \
+    CommentSerializer, CommentUserSerializer
+>>>>>>> 87c97b94e312b034f07b40a4a604cca5b143a391
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -44,6 +50,7 @@ def me(request):
     return Response(data=serializer.data, status=200)
 
 
+<<<<<<< HEAD
 class CartItemViewSet(viewsets.ModelViewSet):
     queryset = CartItem.objects.all()
 
@@ -74,3 +81,17 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+=======
+class shoppingCartViewSet(viewsets.ModelViewSet):
+    serializer_class = shoppingCartSerializer
+    queryset = shoppingCart.objects.all()
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return CommentSerializer
+        return CommentUserSerializer
+>>>>>>> 87c97b94e312b034f07b40a4a604cca5b143a391
