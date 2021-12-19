@@ -4,9 +4,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.models import Product, shoppingCart
-from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, shoppingCartSerializer, \
-    CarritogetSerializer
+from api.models import Product, CartItem
+from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, CartItemSerializer, \
+    CartItemgetSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -40,10 +40,11 @@ def me(request):
     return Response(data=serializer.data, status=200)
 
 
-class shoppingCartViewSet(viewsets.ModelViewSet):
-    queryset = shoppingCart.objects.all()
+class CartItemViewSet(viewsets.ModelViewSet):
+    queryset = CartItem.objects.all()
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return shoppingCartSerializer
-        return CarritogetSerializer
+            return CartItemSerializer
+        return CartItemgetSerializer
+

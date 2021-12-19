@@ -25,7 +25,7 @@ const DetailProduct = () => {
 
     const createCarrito = (e) => {
         e.preventDefault()
-        httpPostAuthorization('api/shoppingCartViewSet/', { Product: id, "usuario": userData.id })
+        httpPostAuthorization('api/CartItemViewSet/', { Product: id, "usuario": userData.id })
             .then(window.alert("Su producto se guardo correctamente"))
     }
 

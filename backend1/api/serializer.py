@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from api.models import Product, shoppingCart
+from api.models import Product, CartItem
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -34,22 +34,23 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = "__all__"
+
+
+class CartItemgetSerializer(serializers.ModelSerializer):
+    Product = ProductSerializer(read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = "__all__"
+
+
 class MeSerializer(serializers.ModelSerializer):
+    shoppingCart = CartItemgetSerializer(many=True)
+
     class Meta:
         model = get_user_model()
-        fields = ["id", "username", "email", "first_name", "last_name"]
-
-
-class shoppingCartSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = shoppingCart
-        fields = "__all__"
-
-
-class CarritogetSerializer(serializers.ModelSerializer):
-    Product = ProductSerializer(read_only=True)
-    usuario = MeSerializer(read_only=True)
-
-    class Meta:
-        model = shoppingCart
-        fields = "__all__"
+        fields = ["id", "username", "email", "first_name", "last_name", "shoppingCart"]

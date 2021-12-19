@@ -17,6 +17,7 @@ const Perfil = () => {
   useEffect(() => {
     httpGetAuthorization('api/me').then((res) => setUserData(res.data))
   }, [])
+  
 
   useEffect(() => {
     httpGetAuthorization('api/product').then((res) => setProductData(res.data))

@@ -22,7 +22,7 @@ import Perfil from "./components/Perfil/perfil";
 import AuthRoute from "./components/authRoute";
 
 import DetailProduct from "./components/detailProduct/detailProduct";
-import Carrito from "./components/Carrito";
+import Carrito from "./components/Carrito/Carrito";
 function App() {
   return (
     <Router>
@@ -68,10 +68,9 @@ function App() {
               <DetailProduct />
             </Route>
 
-            <AuthRoute path={`/Navbar/carrito/:nameuser/:userid`} exact={true}>
+            <AuthRoute path={`/Navbar/carrito/:nameuser/:iduser`} exact={true}>
               <Carrito />
             </AuthRoute>
-
           </Route>
 
         </Switch>

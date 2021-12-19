@@ -14,9 +14,9 @@ class Product(models.Model):
     offerPercentage = models.DecimalField(max_digits=3, decimal_places=2)
 
 
-class shoppingCart(models.Model):
+class CartItem(models.Model):
+    objects = None
     created_at = models.DateTimeField(editable=False, auto_now_add=True, null=True)
     updated_at = models.DateTimeField(editable=False, auto_now=True, null=True)
     Product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='shoppingCart')
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='shoppingCart')
-
