@@ -11,6 +11,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     features = models.TextField()
     offerPercentage = models.DecimalField(max_digits=3, decimal_places=2)
+    created_at = models.DateTimeField(editable=False, auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(editable=False, auto_now=True, null=True)
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='product', null=True)
 
 
 class shoppingCart(models.Model):
@@ -19,3 +22,12 @@ class shoppingCart(models.Model):
     Product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='shoppingCart')
     usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='shoppingCart')
     cantidadProducts = models.DecimalField(null=True, decimal_places=10, max_digits=12)
+
+
+class Comment(models.Model):
+    comment = models.TextField(max_length=300)
+    created_at = models.DateTimeField(editable=False, auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(editable=False, auto_now=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comment')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comment')
+
