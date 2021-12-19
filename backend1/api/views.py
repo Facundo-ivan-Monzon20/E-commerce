@@ -1,8 +1,12 @@
 # Create your views here.
-from rest_framework import viewsets, generics
+from django.contrib import messages
+from rest_framework import viewsets, generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.contrib.auth import logout
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Product, CartItem
 from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, CartItemSerializer, \
@@ -48,3 +52,25 @@ class CartItemViewSet(viewsets.ModelViewSet):
             return CartItemSerializer
         return CartItemgetSerializer
 
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def salir(request):
+    logout(request)
+    messages.success(request, "sesion cerrada correctamente")
+    return Response(status=200)
+
+
+
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        try:
+            token = request.data["token_obtain_pair"]
+            token = RefreshToken(token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
