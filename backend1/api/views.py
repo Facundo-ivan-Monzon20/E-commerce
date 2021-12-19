@@ -4,8 +4,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.models import Product
-from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer
+from api.models import Product, shoppingCart, Comment
+from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, shoppingCartSerializer, \
+    CommentSerializer, CommentUserSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -13,12 +14,12 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
     # Filtro
-   # def get_queryset(self):
-   #     queryset = self.queryset
+    # def get_queryset(self):
+    #     queryset = self.queryset
     #    id = self.request.query_params.get('id')
-     #   if id is not None:
-      #      queryset = queryset.filter(id=id)
-       # return queryset
+    #   if id is not None:
+    #      queryset = queryset.filter(id=id)
+    # return queryset
 
     def get_permissions(self):
         if self.action == 'create':
@@ -37,3 +38,17 @@ class RegisterView(generics.CreateAPIView):
 def me(request):
     serializer = MeSerializer(request.user)
     return Response(data=serializer.data, status=200)
+
+
+class shoppingCartViewSet(viewsets.ModelViewSet):
+    serializer_class = shoppingCartSerializer
+    queryset = shoppingCart.objects.all()
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return CommentSerializer
+        return CommentUserSerializer
