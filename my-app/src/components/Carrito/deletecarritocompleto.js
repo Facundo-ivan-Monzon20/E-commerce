@@ -15,7 +15,7 @@ function Deletecarritocomplet({ ids }) {
         array1.forEach(id => {
             httpDelete(`api/CartItemViewSet/${id}/`)
                 .then(
-                    history.push(`/Navbar/Perfil`)
+                    window.location.reload(true)
                 )
         });
 

@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 from api.models import CartItem
 
-from api.serializer import CartItemSerializer, CartItemgetSerializer
+from api.serializer import CartItemSerializer, CartItemgetSerializer, ProductSerializer2
 
 from api.models import Product, Comment
 from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, \
@@ -18,8 +18,14 @@ from api.serializer import ProductSerializer, RegisterSerializer, MeSerializer, 
 
 
 class ProductViewSet(viewsets.ModelViewSet):
+
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return ProductSerializer
+        return ProductSerializer2
 
     # Filtro
     # def get_queryset(self):

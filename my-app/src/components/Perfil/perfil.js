@@ -17,6 +17,7 @@ const Perfil = () => {
   useEffect(() => {
     httpGetAuthorization('api/me').then((res) => setUserData(res.data))
   }, [])
+  console.log(userData.id)
   
 
   useEffect(() => {
@@ -29,7 +30,8 @@ const Perfil = () => {
 
   const createProduct = (e) => {
     e.preventDefault()
-    httpPostAuthorization('api/product/', { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage })
+    httpPostAuthorization('api/product/', { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage ,
+      usuario: userData.id})
       .then(
         history.push('/')
       )
@@ -47,7 +49,8 @@ const Perfil = () => {
 
   const editProduct = (e) => {
     e.preventDefault()
-    httpPutAuthorization(`api/product/${id}/`, { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage })
+    httpPutAuthorization(`api/product/${id}/`, { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage,
+    usuario: userData.id })
       .then(
         history.push('/Navbar/Perfil')
       )

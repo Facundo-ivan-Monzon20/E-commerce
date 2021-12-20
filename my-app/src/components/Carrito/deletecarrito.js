@@ -12,7 +12,7 @@ function Deletecarrito({ id }) {
         e.preventDefault()
         httpDelete(`api/CartItemViewSet/${id}/`)
             .then(
-                history.push(`/Navbar/Perfil`)
+                window.location.reload(true)
             )
     }
 
