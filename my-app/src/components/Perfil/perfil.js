@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {  httpGetAuthorization, httpPostAuthorization, httpPutAuthorization, httpGet} from "../../utils/httpFunctions";
+import {  httpGetAuthorization, httpPostAuthorization, httpGet} from "../../utils/httpFunctions";
 import { useHistory } from "react-router-dom";
 import ProductoVenta from '../ProductoVenta/productoVenta'
 
@@ -12,7 +12,6 @@ const Perfil = () => {
   const [price, setPrice] = useState([])
   const [features, setFeatures] = useState([])
   const [offerPercentage, setOfferPercentage] = useState([])
-  const [id, setId] = useState(null)
   const [filterProducts] = useState(true)
   const [products, setProducts] = useState([])
 
@@ -42,15 +41,6 @@ const Perfil = () => {
 
 
   
-
-  const editProduct = (e) => {
-    e.preventDefault()
-    httpPutAuthorization(`api/product/${id}/`, { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage,
-    usuario: userData.id })
-      .then(
-        history.push('/Navbar/Perfil')
-      )
-  }
 
 
   const fetchProducts = () => {
