@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { httpDelete, httpGetAuthorization, httpPostAuthorization, httpPutAuthorization} from "../../utils/httpFunctions";
+import {  httpGetAuthorization, httpPostAuthorization, httpPutAuthorization, httpGet} from "../../utils/httpFunctions";
 import { useHistory } from "react-router-dom";
-
+import ProductoVenta from '../ProductoVenta/productoVenta'
 
 const Perfil = () => {
   const [productData, setProductData] = useState({})
@@ -13,11 +13,13 @@ const Perfil = () => {
   const [features, setFeatures] = useState([])
   const [offerPercentage, setOfferPercentage] = useState([])
   const [id, setId] = useState(null)
+  const [filterProducts] = useState(true)
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     httpGetAuthorization('api/me').then((res) => setUserData(res.data))
   }, [])
-  console.log(userData.id)
+
   
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Perfil = () => {
   const createProduct = (e) => {
     e.preventDefault()
     httpPostAuthorization('api/product/', { name: name, category: category, description: description, price: price, features: features, offerPercentage: offerPercentage ,
-      usuario: userData.id})
+      "usuario": userData.id})
       .then(
         history.push('/')
       )
@@ -39,13 +41,7 @@ const Perfil = () => {
 
 
 
-  const deleteProduct = (e) => {
-    e.preventDefault()
-    httpDelete(`api/product/${id}/`)
-      .then(
-        history.push('/Navbar/Perfil')
-      )
-  }
+  
 
   const editProduct = (e) => {
     e.preventDefault()
@@ -57,249 +53,178 @@ const Perfil = () => {
   }
 
 
+  const fetchProducts = () => {
+    httpGet('api/product/')
+      .then((res) => setProducts(res.data))
+  }
+
+
+  useEffect(fetchProducts, [])
+
+
+  let finalProducts;
+
+
+  if (filterProducts) {
+    finalProducts = products.filter((product) => {
+      return product.usuario.username == userData.username;
+    })
+  } else {
+    finalProducts = [];
+  }
+
+
+
+
 
   return (
-    <div class="container">
+    <div className="container">
 
-      <div class="row  mt-5">
+    <div className="row  mt-5">
 
-        <div class="col-md-8 offset-md-2 bg-white shadow p-3 mb-5 bg-white rounded">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link p-3" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Datos Usuario</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link p-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                role="tab" aria-controls="profile" aria-selected="false">Crear Producto</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link p-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                role="tab" aria-controls="contact" aria-selected="false">Eliminar Producto</button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <button class="nav-link p-3" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button"
-                role="tab" aria-controls="edit" aria-selected="false">Editar Producto</button>
-            </li>
-          </ul>
+      <div className="col-md-8 offset-md-2 bg-white shadow p-3 mb-5 bg-white rounded">
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item" role="presentation">
+            <button className="nav-link p-3" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+              role="tab" aria-controls="home" aria-selected="true">Datos Usuario</button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button className="nav-link p-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+              role="tab" aria-controls="profile" aria-selected="false">Crear Producto</button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button className="nav-link p-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+              role="tab" aria-controls="contact" aria-selected="false">Productos en venta</button>
+          </li>
+        </ul>
 
 
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div class="row mt-5 mb-4 ">
-                <div class="col-12 col-md-5 ">
-                  <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" class="img-thumbnail" alt="..." />
+        <div className="tab-content" id="myTabContent">
+          <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div className="row mt-5 mb-4 ">
+              <div className="col-12 col-md-5 ">
+                <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" className="img-thumbnail" alt="..." />
+              </div>
+              <div className="col-12 col-md-7 mt-4 mt-mb-0" >
+                <div className="form-group row mb-4 ">
+                  <label for="code" className="col-3 "> Usuario:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control bg-white border-0" value={userData.username} disabled />
+                  </div>
                 </div>
-                <div class="col-12 col-md-7 mt-4 mt-mb-0" >
-                  <div class="form-group row mb-4 ">
-                    <label for="code" class="col-3 "> Usuario:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control bg-white border-0" value={userData.username} disabled />
-                    </div>
-                  </div>
 
-                  <div class="form-group row mb-4">
-                    <label for="user" class="col-3"> Nombre completo:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control bg-white border-0" value={userData.first_name + " " + userData.last_name} disabled />
-                    </div>
+                <div className="form-group row mb-4">
+                  <label for="user" className="col-3"> Nombre completo:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control bg-white border-0" value={userData.first_name + " " + userData.last_name} disabled />
                   </div>
+                </div>
 
-                  <div class="form-group row mb-4">
-                    <label for="email" class="col-3"> Email:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control bg-white border-0" value={userData.email} disabled />
-                    </div>
+                <div className="form-group row mb-4">
+                  <label for="email" className="col-3"> Email:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control bg-white border-0" value={userData.email} disabled />
                   </div>
+                </div>
 
-                  <div class="form-group row mb-4">
-                    <label for="cantProduct" class="col-3"> Productos en venta:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control bg-white border-0" value="0" disabled />
-                    </div>
+                <div className="form-group row mb-4">
+                  <label for="cantProduct" className="col-3"> Productos en venta:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control bg-white border-0" value="0" disabled />
                   </div>
-
-                  <button class="btn btn-danger m-2">Cancelar</button>
                 </div>
               </div>
-
             </div>
-            <form class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" onSubmit={createProduct}>
-              <div class="row mt-5 mb-4 ">
 
-                <div class="col-10 offset-1">
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Nombre:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={name}
-                        onChange={(e) => setName(e.target.value)} />
-                    </div>
-                  </div>
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3 "> Categoría:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={category}
-                        onChange={(e) => setCategory(e.target.value)} />
-                    </div>
-                  </div>
+          </div>
+          <form className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" onSubmit={createProduct}>
+            <div className="row mt-5 mb-4 ">
 
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Descripción:</label>
-                    <div class="col-8">
-                      <textarea type="text" class="form-control border border-secondary" value={description}
-                        onChange={(e) => setDescription(e.target.value)}></textarea>
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Precio:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={price}
-                        onChange={(e) => setPrice(e.target.value)} />
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Características:</label>
-                    <div class="col-8">
-                      <textarea type="text" class="form-control border border-secondary" value={features}
-                        onChange={(e) => setFeatures(e.target.value)}></textarea>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Descuento:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={offerPercentage}
-                       onChange={(e) => setOfferPercentage(e.target.value)} />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group text-center ">
-                    <button type="submit" class="btn btn-primary m-2 ">Crear Producto</button>
-                    <button class="btn btn-danger m-2">Cancelar</button>
+              <div className="col-10 offset-1">
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3"> Nombre:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control border border-secondary" value={name}
+                      onChange={(e) => setName(e.target.value)} />
                   </div>
                 </div>
-              </div>
-
-
-            </form>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
-              <div class="row mt-5 mb-4 ">
-                <div class="col-12 col-md-5 ">
-                  <img src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" class="img-thumbnail" alt="..." />
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3 "> Categoría:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control border border-secondary" value={category}
+                      onChange={(e) => setCategory(e.target.value)} />
+                  </div>
                 </div>
 
-                <form class="col-12 col-md-7 mt-4 mt-mb-0 " onSubmit={deleteProduct}>
-               
-                <div class="form-group row mb-4">
-                      <label for="codigo" class="col-3"> Codigo: </label>
-                      <div class="col-8">
-                        <input className="form-control border border-secondary"
-                          value={id}
-                          onChange={(e) => setId(e.target.value)}
-                        />
-                      </div>
-                      </div>
-                  <div class="form-group text-center ">
-                    
-                    <button class="btn btn-danger m-2" type="submit" >Eliminar</button>
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3"> Descripción:</label>
+                  <div className="col-8">
+                    <textarea type="text" className="form-control border border-secondary" value={description}
+                      onChange={(e) => setDescription(e.target.value)}></textarea>
                   </div>
-                </form>
+                </div>
 
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3"> Precio:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control border border-secondary" value={price}
+                      onChange={(e) => setPrice(e.target.value)} />
+                  </div>
+                </div>
+
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3"> Características:</label>
+                  <div className="col-8">
+                    <textarea type="text" className="form-control border border-secondary" value={features}
+                      onChange={(e) => setFeatures(e.target.value)}></textarea>
+                  </div>
+                </div>
+
+
+                <div className="form-group row mb-4">
+                  <label for="codigo" className="col-4 col-md-3"> Descuento:</label>
+                  <div className="col-8">
+                    <input type="text" className="form-control border border-secondary" value={offerPercentage}
+                     onChange={(e) => setOfferPercentage(e.target.value)} />
+                  </div>
+                </div>
+
+
+                <div className="form-group text-center ">
+                  <button type="submit" className="btn btn-primary m-2 ">Crear Producto</button>
+                  <button className="btn btn-danger m-2">Cancelar</button>
+                </div>
               </div>
-
-
             </div>
 
 
+          </form>
+          <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
-            <form class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="edit-tab" onSubmit={editProduct}>
-              <div class="row mt-5 mb-4 ">
+            <div className="row mt-5 mb-4 ">
+            
+              <h1>Tus productos en venta</h1>
+            {
+                  finalProducts.map((products) => {
+                      return <ProductoVenta product={products} />;
+                    })
+                  }
 
-                <div class="col-10 offset-1">
-                <div class="form-group row mb-4">
-                      <label for="codigo" class="col-3"> Codigo: </label>
-                      <div class="col-8">
-                        <input className="form-control border border-secondary"
-                          value={id}
-                          onChange={(e) => setId(e.target.value)}
-                        />
-                      </div>
-                      </div>
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Nombre:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={name}
-                        onChange={(e) => setName(e.target.value)} />
-                    </div>
-                  </div>
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3 "> Categoría:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={category}
-                        onChange={(e) => setCategory(e.target.value)} />
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Descripción:</label>
-                    <div class="col-8">
-                      <textarea type="text" class="form-control border border-secondary" value={description}
-                        onChange={(e) => setDescription(e.target.value)}></textarea>
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Precio:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={price}
-                        onChange={(e) => setPrice(e.target.value)} />
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Características:</label>
-                    <div class="col-8">
-                      <textarea type="text" class="form-control border border-secondary" value={features}
-                        onChange={(e) => setFeatures(e.target.value)}></textarea>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group row mb-4">
-                    <label for="codigo" class="col-4 col-md-3"> Descuento:</label>
-                    <div class="col-8">
-                      <input type="text" class="form-control border border-secondary" value={offerPercentage}
-                       onChange={(e) => setOfferPercentage(e.target.value)} />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group text-center ">
-                    <button type="submit" class="btn btn-primary m-2">Editar Producto</button>
-                  </div>
-                </div>
-              </div>
-
-
-            </form>
-
-
-
-
+            </div>
 
 
           </div>
+
+
+
+
         </div>
       </div>
-
     </div>
 
+  </div>
+
+        
   );
 };
 

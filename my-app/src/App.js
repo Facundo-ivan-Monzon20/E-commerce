@@ -22,9 +22,12 @@ import Perfil from "./components/Perfil/perfil";
 import AuthRoute from "./components/authRoute";
 
 import DetailProduct from "./components/detailProduct/detailProduct";
+
 import Carrito from "./components/Carrito/Carrito";
 
 import DetalleCompra from "./components/Carrito/DetalleDeCompra";
+
+import EditarProducto from "./components/EditarProducto/editarProducto";
 
 function App() {
   return (
@@ -69,6 +72,10 @@ function App() {
 
             <Route path={`/Navbar/:name/:id`} exact={true} >
               <DetailProduct />
+            </Route>
+
+            <Route path={`/Navbar/editarproducto/:name/:id`} exact={true} >
+              <EditarProducto />
             </Route>
 
             <AuthRoute path={`/Navbar/carrito/:nameuser/:iduser`} exact={true}>

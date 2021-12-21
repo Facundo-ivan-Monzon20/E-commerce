@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react'
 import { httpGet, httpDelete } from '../../utils/httpFunctions'
-import { useHistory } from "react-router-dom";
+
 
 function Comments({ comments }) {
   const [commentData, setCommentData] = useState({})
-  const [comment, setComment] = useState([])
   const [idComment, setIdComment] = useState(null)
 
   let idCommentFinal = comments.id
   
-  const history = useHistory();
 
   const deleteComment = (e) => {
     e.preventDefault()
@@ -47,9 +45,6 @@ function Comments({ comments }) {
                 {comments.comment}
               </p>
               <div class="botones text-right text-end d-flex">
-                <form>
-                <button class="btn btnComentario" type="submit">Editar</button>
-                </form>
                 <form onSubmit={deleteComment}>
                   <input type="hidden" value={idComment} onChange={(e) => setIdComment(e.target.value)}/>
                 <button class="btn btnComentario" type="submit">Borrar</button>

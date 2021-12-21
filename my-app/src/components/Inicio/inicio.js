@@ -11,7 +11,7 @@ const Inicio = () => {
 
 
   const fetchProducts = () => {
-    httpGet('api/product/')
+    httpGet(`api/product/`)
       .then((res) => setProducts(res.data))
   }
 
