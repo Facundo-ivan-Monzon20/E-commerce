@@ -15,7 +15,7 @@ function Comments({ comments }) {
     e.preventDefault()
     httpDelete(`api/comment/${idCommentFinal}/`)
       .then(
-        history.push('/Navbar/Hola/9')
+        window.location.reload(true)
       )
   }
 

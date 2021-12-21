@@ -23,6 +23,9 @@ import AuthRoute from "./components/authRoute";
 
 import DetailProduct from "./components/detailProduct/detailProduct";
 import Carrito from "./components/Carrito/Carrito";
+
+import DetalleCompra from "./components/Carrito/DetalleDeCompra";
+
 function App() {
   return (
     <Router>
@@ -70,6 +73,10 @@ function App() {
 
             <AuthRoute path={`/Navbar/carrito/:nameuser/:iduser`} exact={true}>
               <Carrito />
+            </AuthRoute>
+
+            <AuthRoute path={`/Navbar/carrito/:idusuario/DetalleDeCompra/:id`} exact={true}>
+              <DetalleCompra />
             </AuthRoute>
           </Route>
 

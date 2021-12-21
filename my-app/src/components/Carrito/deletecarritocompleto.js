@@ -1,10 +1,7 @@
-import { useHistory } from "react-router"
 
 import { httpDelete } from "../../utils/httpFunctions";
 
 function Deletecarritocomplet({ ids }) {
-
-    const history = useHistory();
 
 
 

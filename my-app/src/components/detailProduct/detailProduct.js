@@ -21,7 +21,7 @@ const DetailProduct = () => {
 
   const { id } = useParams()
 
-  let idProduct = id
+  const idProduct = id
 
   const fetchProducts = () => {
     httpGet(`api/product/${id}`)
@@ -53,8 +53,6 @@ const DetailProduct = () => {
     httpPostAuthorization('api/CartItemViewSet/', { Product: id, "usuario": userData.id })
       .then(window.alert("Su producto se guardo correctamente"))
   }
-
-
 
 
 
